@@ -9,51 +9,51 @@ bool askToContinue();
 
 class Node
 {
-    public:
-        char data;
-        Node *next;
-        Node(char _data, Node* _next)
-        {
-            data = _data;
-            next = _next;
-        }
+public:
+    char data;
+    Node *next;
+    Node(char _data, Node *_next)
+    {
+        data = _data;
+        next = _next;
+    }
 };
 
 class LinkedList
 {
-    public:
-        Node *head;
-        LinkedList()
+public:
+    Node *head;
+    LinkedList()
+    {
+        head = NULL;
+    }
+    void print()
+    {
+        cout << "The resultn is: ";
+        Node *rover = head;
+        while (rover != NULL)
         {
-            head = NULL;
+            cout << rover->data << ' ';
+            rover = rover->next;
         }
-        void print()
+        cout << "\n\n";
+    }
+    void pushHead(char data)
+    {
+        Node *n = new Node(data, head);
+        head = n;
+    }
+    void clearll()
+    {
+        Node *rover = head;
+        while (rover != NULL)
         {
-            cout << "The resultn is: ";
-            Node *rover = head;
-            while (rover != NULL)
-            {
-                cout << rover->data << ' ';
-                rover = rover->next;
-            }
-            cout << "\n\n";
+            Node *tmp = rover;
+            rover = rover->next;
+            free(tmp);
         }
-        void pushHead(char data)
-        {
-            Node *n = new Node(data, head);
-            head = n;
-        }
-        void clearll()
-        {
-            Node *rover = head;
-            while (rover != NULL)
-            {
-                Node *tmp = rover;
-                rover = rover->next;
-                free(tmp);
-            }
-            head = NULL;
-        }
+        head = NULL;
+    }
 };
 
 // > MAIN CLASS
