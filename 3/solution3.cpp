@@ -1,24 +1,18 @@
 #include<iostream>
 #include<string>
 
+// ?? =======================================
+// ?? Alfon's Helper Method
+
+// Clear Screen
+//-------------------------
 void clrscr()
 {
     std::cout << std::basic_string(255, '\n');
 }
 
-void printHeader()
-{
-    clrscr();
-    std::cout << "Bluejack Hospital\n";
-    std::cout << "=================\n";
-    std::cout << "1. Insert\n";
-    std::cout << "2. View\n";
-    std::cout << "3. Next Queue\n";
-    std::cout << "4. Exit\n";
-}
-
-
-
+// Padded String
+//-------------------------
 std::string pstr(std::string c, size_t pad, bool leftAligned = true)
 {
     std::string res = "";
@@ -39,10 +33,14 @@ std::string pstr(std::string c, size_t pad, bool leftAligned = true)
     return res;
 }
 
+// Fast Print
+//-------------------------
 void p(std::string c){
     std::cout << c;
 }
 
+// Ask for Input (String)
+//-------------------------
 std::string promptInput(std::string prompt)
 {
     std::cout << prompt;
@@ -51,10 +49,52 @@ std::string promptInput(std::string prompt)
     return str;
 }
 
+// Ask for Input (Integer)
+//-------------------------
+int promptInteger(std::string prompt)
+{
+    do
+    {
+        std::cout << prompt;
+        std::string str = "";
+        getline(std::cin, str);
+        bool accepted = true;
+        int res = 0;
+        try
+        {
+            res = stoi(str);
+        }
+        catch(const std::exception& e)
+        {
+            accepted = false;
+        }
+        if (accepted)
+        {
+            break;
+        }
+    } while (1);
+}
+
+// Ask for Enter Key
+//-------------------------
 void promptAny(std::string prompt)
 {
     std::cout << prompt;
     getchar();
+}
+
+// ?? End of Helper Method
+// ?? ________________________________________
+
+void printHeader()
+{
+    clrscr();
+    std::cout << "Bluejack Hospital\n";
+    std::cout << "=================\n";
+    std::cout << "1. Insert\n";
+    std::cout << "2. View\n";
+    std::cout << "3. Next Queue\n";
+    std::cout << "4. Exit\n";
 }
 
 class Node
@@ -98,6 +138,7 @@ public:
         }
         return false;
     }
+
 
     bool set_age(int val)
     {

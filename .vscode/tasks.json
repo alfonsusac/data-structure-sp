@@ -6,6 +6,7 @@
             "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
+                "-std=c++20",
                 "-g3",
                 "-Wall",
                 "-Wextra",
@@ -29,7 +30,7 @@
         {
             "type": "shell",
             "label": "Run C++ Program: g++.exe",
-            "command": "C:\\msys64\\mingw64\\bin\\g++.exe -fdiagnostics-color=always -g3 -Wall -Wextra -Wshadow \"${file}\" -o \"${fileDirname}\\${fileBasenameNoExtension}.exe\";\"${fileDirname}\\${fileBasenameNoExtension}.exe\"",
+            "command": "C:\\msys64\\mingw64\\bin\\g++.exe -std=c++20 -fdiagnostics-color=always -g3 -Wall -Wextra -Wshadow \"${file}\" -o \"${fileDirname}\\${fileBasenameNoExtension}.exe\";\"${fileDirname}\\${fileBasenameNoExtension}.exe\"",
             "options": {
                 "cwd": "${fileDirname}"
             },
