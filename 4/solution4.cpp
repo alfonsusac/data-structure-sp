@@ -252,7 +252,9 @@ public:
 
             tail[index]->next = n_node;
             tail[index] = n_node;
+            return true;
         }
+        return false;
     }
     bool remove(Book* b)
     {
@@ -314,26 +316,24 @@ public:
 
     void view()
     {
-        for (size_t i = 0; i < SIZE; i++)
+        U::p(std::basic_string(139, '-') + '\n');
+        U::p("| " + U::pstr("Book ID", 24) + "| " + U::pstr("Book Title", 51) + "| " + U::pstr("Book Author", 26) + "| " + U::pstr("ISBN", 15) + "| " + U::pstr("Page Number", 16) + "|\n");
+        U::p(std::basic_string(139, '-') + '\n');
+        for (int i = 0; i < SIZE; i++)
         {
-            U::p(std::basic_string(139, '-'));
-            U::p("| " + U::pstr("Book ID", 24) + "| " + U::pstr("Book Title", 51) + "| " + U::pstr("Book Author", 26) + "| " + U::pstr("ISBN", 15) + "| " + U::pstr("Page Number", 16) + "|");
-            U::p(std::basic_string(139, '-'));
-            for (int i = 0; i < SIZE; i++)
+            if(head[i] != 0)
             {
-                if(head[i] != 0)
+                Node *rover = head[i];
+                while (rover != 0)
                 {
-                    Node *rover = head[0];
-                    while (rover != 0)
-                    {
-                        U::p(
-                            "| " + U::pstr(rover->data->id(), 24) 
-                            + "| " + U::pstr(rover->data->title(), 51) 
-                            + "| " + U::pstr(rover->data->author(), 26) 
-                            + "| " + U::pstr(rover->data->isbn(), 15) 
-                            + "| " + U::pstr(std::to_string(rover->data->pagenum()), 16) + "|");
-                        U::p(std::basic_string(139, '-') + '\n');
-                    }
+                    U::p(
+                        "| " + U::pstr(rover->data->id(), 24) 
+                        + "| " + U::pstr(rover->data->title(), 51) 
+                        + "| " + U::pstr(rover->data->author(), 26) 
+                        + "| " + U::pstr(rover->data->isbn(), 15) 
+                        + "| " + U::pstr(std::to_string(rover->data->pagenum()), 16) + "|\n");
+                    U::p(std::basic_string(139, '-') + '\n');
+                    rover = rover->next;
                 }
             }
         }
@@ -360,6 +360,8 @@ int main()
         {
             U::clrscr();
             // Print Table Here
+            db->view();
+
             U::promptAny("Press Enter to continue ...\n");
         }
         else if (i_menu == "2")
