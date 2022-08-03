@@ -1,0 +1,148 @@
+(A-(B/C))*((A/K)-L)
+ABC/-AK/L-*
+*-A/BC-/AKL
+LKA/-CB/A-*
+*-A/BC-/AKL
+
+A+B+C+D
+AB+C+D+
++++ABCD
+
+4+6*(5-2)/3
+4652-*3/+
++4/*6-523
+
+A % B / C + (D + E * F – G) * H – I
+AB%C/DEF*+G-H*+I-
+
+(I-H*(G-F*E+D)+C/B%A)
+IHGFE*-D+*-CB/A%+
++%A/BC-*+D-*EFGHI
+
+A % B / C + (D + E * F – G) * H – I
+A % B / C   (D + E * F – G) * H   I
+A % B / C   (D + E * F – G)   H
+A % B   C    D + E * F   G 
+A   B        D   E * F  
+                 E   F
+
+
+-+/%ABC*-+D*EFGHI
+
+
+
+>>>> POSTFIX <<<<
+
+A % B / C + (D + E * F - G) * H - I
+
+encapsulate str
+
+(A%B/C+(D+E*F-G)*H-I)
+
+(	(
+A	(		A
+%	(%		A
+B	(%		AB
+/	(% >= /	AB%
+	(%/
+C	(/		AB%C
++     (/ >= +  	AB%C/
+(     (+(    	AB%C/
+D     (+(    	AB%C/D
++     (+(+   	AB%C/D
+E     (+(+		AB%C/DE
+*	(+(+ < * 	AB%C/DE
+F	(+(+*  	AB%C/DEF
+-	(+(+* >= -	AB%C/DEF*
+	(+(+ >= -	AB%C/DEF*+
+G	(+(-		AB%C/DEF*+G
+)	(+(-)		AB%C/DEF*+G
+	(+()		AB%C/DEF*+G-
+	(+		AB%C/DEF*+G-
+*	(+ < *	AB%C/DEF*+G-
+H	(+*		AB%C/DEF*+G-H
+-	(+* >= -	AB%C/DEF*+G-H*
+	(+ >= -	AB%C/DEF*+G-H*+
+	(-		AB%C/DEF*+G-H*+
+I	(-		AB%C/DEF*+G-H*+I
+)	()		AB%C/DEF*+G-H*+I-
+
+>>>> PREFIX <<<<
+
+encapsulate str
+
+(A%B/C+(D+E*F-G)*H-I)
+
+reverse str
+
+(I-H*(G-F*E+D)+C/B%A)
+
+
+IHGFE*D+-*CBA%/+-
+
+(	(		
+I	(		I
+-	(-		I
+H	(-		IH
+*	(- < *	IH	
+	(-*		IH
+(	(-*(		IH
+G	(-*(		IHG
+-	(-*(-		IHG
+F	(-*(-		IHGF
+*	(-*(- < *	IHGF
+	(-*(-*	IHGF
+E	(-*(-*	IHGFE
++	(-*(-* > +	IHGFE
+	(-*(- <= +  IHGFE*
+	(-*(-+	IHGFE*
+D	(-*(-+	IHGFE*D
+)	(-*(		IHGFE*D+-
++	(-* > +	IHGFE*D+-
+	(- <= +	IHGFE*D+-*
+C	(-+		IHGFE*D+-*C
+/	C-+ <= /	IHGFE*D+-*C
+B	(-+/		IHGFE*D+-*CB
+%	(-+/ <= %	IHGFE*D+-*CB
+A	(-+/%		IHGFE*D+-*CBA
+)			IHGFE*D+-*CBA%/+-
+
+reverse result
++%ABC-*+D-*EFGHI
+supposed to be -+/%ABC*-+D*EFGHI
+
+
+
+AB%C/DEF*+G-H*+I-
+
+
+
+(A%B/C+(D+E*F-G)*H-I)
+
+        (-)			| Postfix: 				| Prefix:					| Prefix without reverse:
+        / \			|  > if !null print current	|  > if !null print current		|  > traverse left
+      (+) (I)		|  > traverse left		|  > traverse right 			|  > traverse right
+      / \			|  > traverse right		|  > traverse left			|  > if !null print current
+    (/)  \   		| Traversal(root) output : 	| Traversal(root) output:		| Traversal(root) output:
+    / \   \			|  -+/%ABC*-+D*EFGHI		|  -I+*H-G+*FED/C%BA then reverse: 	|  AB%C/DEF*+G-H*+I-
+  (%) (C) (*)							|  AB%C/DEF*+G-H*+I-		
+  / \     / \ 		  (-) root				  (-) root					  (-) root
+(A) (B) (-) (H)		   |-(+)				   |-(I)					   |-(+) 
+	  / \			   |	|-(/)				   \-(+)					   |	|-(/)	
+      (+) (G)  		   |	|  |-(%)				|-(*)					   |	|  |-(%) 
+	/ \			   |	|  |	|-(A)				|  |-(H) 				   |	|  |	|-(A) 
+    (D) (*)			   |	|  |	\-(B)				|  \-(-)				   |	|  |	\-(B) 
+	  / \		  	   |	|  \-(C)				|	|-(G)				   |	|  \-(C) 
+      (E) (F)		   |	\-(*)					|     \-(+)				   |	\-(*)		
+				   |	   |-(-)				|	   |-(*)			   |	   |-(-) 
+				   |	   |	|-(+)				|	   |	|-(F)			   |	   |	|-(+)
+				   |	   |	|  |-(D)			|	   |	\-(E)			   |	   |	|  |-(D)
+				   |	   |	|  \-(*)			|	   \-(D)			   |	   |	|  \-(*)
+			     	   |	   |	|     |-(E)			\-(/)					   |	   |	|     |-(E)
+				   |	   |	|     \-(F)			   |-(C)				   |	   |	|     \-(F)	
+				   |	   |  \-(G)				   \-(%)				   |	   |  \-(G)		
+	  			   |	   \-(H)					|-(B)				   |	   \-(H)
+				   \-(I)						\-(A)				   \-(I)	
+        
+
+
