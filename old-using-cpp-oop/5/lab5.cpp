@@ -2,21 +2,21 @@
 #include<stdlib.h>
 #include<string.h>
 
-struct Node
+struct Node1
 {
     char name[150];
-    Node *left, *right;
+    Node1 *left, *right;
 };
 
-Node* createNewNode(char *name)
+Node1* createNewNode(char *name)
 {
-    Node *newNode = (Node *)malloc(sizeof(Node));
+    Node1 *newNode = (Node1 *)malloc(sizeof(Node1));
     strcpy(newNode->name, name);
     newNode->left = newNode->right = NULL;
     return newNode;
 }
 
-Node* insert(Node *curr, char *name)
+Node1* insert(Node1 *curr, char *name)
 {
     if (!curr)
     {
@@ -34,7 +34,7 @@ Node* insert(Node *curr, char *name)
     return curr;
 }
 
-void preOrder(Node *curr)
+void preOrder(Node1 *curr)
 {
     if(!curr)
         return;
@@ -44,7 +44,7 @@ void preOrder(Node *curr)
     preOrder(curr->right);
 }
 
-void inOrder(Node *curr)
+void inOrder(Node1 *curr)
 {
     if (!curr)
         return;
@@ -56,7 +56,7 @@ void inOrder(Node *curr)
 
 int main()
 {
-    Node *root = NULL;
+    Node1 *root = NULL;
     root = insert(root, (char *)"Alfon");
     root = insert(root, (char *)"Winston");
     root = insert(root, (char *) "Parama");

@@ -7,12 +7,12 @@ void printHeader();
 string askSentence();
 bool askToContinue();
 
-class Node
+class Node1
 {
 public:
     char data;
-    Node *next;
-    Node(char _data, Node *_next)
+    Node1 *next;
+    Node1(char _data, Node1 *_next)
     {
         data = _data;
         next = _next;
@@ -22,7 +22,7 @@ public:
 class LinkedList
 {
 public:
-    Node *head;
+    Node1 *head;
     LinkedList()
     {
         head = NULL;
@@ -30,7 +30,7 @@ public:
     void print()
     {
         cout << "The resultn is: ";
-        Node *rover = head;
+        Node1 *rover = head;
         while (rover != NULL)
         {
             cout << rover->data << ' ';
@@ -40,15 +40,15 @@ public:
     }
     void pushHead(char data)
     {
-        Node *n = new Node(data, head);
+        Node1 *n = new Node1(data, head);
         head = n;
     }
     void clearll()
     {
-        Node *rover = head;
+        Node1 *rover = head;
         while (rover != NULL)
         {
-            Node *tmp = rover;
+            Node1 *tmp = rover;
             rover = rover->next;
             free(tmp);
         }

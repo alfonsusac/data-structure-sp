@@ -97,7 +97,7 @@ void printHeader()
     std::cout << "4. Exit\n";
 }
 
-class Node
+class Node1
 {
 private:
     std::string _name;
@@ -112,14 +112,14 @@ public:
     std::string desc() { return _desc; }
     std::string colorstr() { return colors[_color-1]; }
     int color() { return _color; }
-    Node *next;
+    Node1 *next;
 
-    Node()
+    Node1()
     {
-        Node("unset", -1, "unset", -1);
+        Node1("unset", -1, "unset", -1);
     }
 
-    Node(std::string pname, int page, std::string pdesc, int color)
+    Node1(std::string pname, int page, std::string pdesc, int color)
     {
         _name = pname;
         _age = page;
@@ -175,7 +175,7 @@ public:
 class GroupedLinkedList
 {
 private:
-    Node *head;
+    Node1 *head;
     int _count;
 
 public:
@@ -184,21 +184,21 @@ public:
         head = 0;
         _count = 0;
     }
-    Node *peek() { return head; }
+    Node1 *peek() { return head; }
     int count() 
     {
         // std::cout << _count;
         return _count;
     }
-    Node *pop() 
+    Node1 *pop() 
     {
-        Node *temp = head;
+        Node1 *temp = head;
         head = head->next;
         _count--;
         return temp;
     }
 
-    void queue(Node *n)
+    void queue(Node1 *n)
     {
         if (n->color() == -1 || n->age() == -1 || n->name() == "unset" || n->desc() == "unset"){
             std::cout << n->color() << " " << n->age() << " " << n->name() << " " << n->desc() << "\n";
@@ -216,7 +216,7 @@ public:
             }
             else
             {
-                Node *curr = head;
+                Node1 *curr = head;
                 if(curr->next == NULL)
                 {
                     curr->next = n;
@@ -244,10 +244,10 @@ main()
 
     GroupedLinkedList* db = new GroupedLinkedList();
 
-    db->queue(new Node("Mr. Budi", 34, "Serious injury from car accident", 3));
-    db->queue(new Node("Mr. John", 45, "GERD", 2));
-    db->queue(new Node("Mrs. Carolina", 28, "Nausea, vomiting, sweating, and difficulties walking", 2));
-    db->queue(new Node("Mr. Doe", 23, "Cough and fever", 1));
+    db->queue(new Node1("Mr. Budi", 34, "Serious injury from car accident", 3));
+    db->queue(new Node1("Mr. John", 45, "GERD", 2));
+    db->queue(new Node1("Mrs. Carolina", 28, "Nausea, vomiting, sweating, and difficulties walking", 2));
+    db->queue(new Node1("Mr. Doe", 23, "Cough and fever", 1));
 
     std::string i_menu;
     do
@@ -259,7 +259,7 @@ main()
         if (i_menu == "1")
         {
             clrscr();
-            Node *n = new Node();
+            Node1 *n = new Node1();
             
             do
             {
@@ -323,7 +323,7 @@ main()
                 p("|No  | Name                      | Age  | Description                                             | Code    |\n");
                 p("-------------------------------------------------------------------------------------------------------------\n");
 
-                Node *rover = db->peek();
+                Node1 *rover = db->peek();
                 int idx = 0;
                 while(rover)
                 {
@@ -348,7 +348,7 @@ main()
                 promptAny("Press Enter to continue ...");
             }else
             {
-                Node *next_queue = db->pop();
+                Node1 *next_queue = db->pop();
 
                 p("The next patient is:\n");
                 p("" + pstr("Name", 15) + ": " + next_queue->name() + "\n");
