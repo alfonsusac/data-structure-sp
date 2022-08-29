@@ -1,5 +1,7 @@
 {
     "files.associations": {
+        "*.css": "css",
+        "css": "css",
         "xutility": "cpp",
         "iostream": "cpp",
         "xstring": "cpp",
@@ -43,6 +45,7 @@
         "xmemory": "cpp",
         "xstddef": "cpp",
         "xtr1common": "cpp",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "util.h": "c"
     }
 }

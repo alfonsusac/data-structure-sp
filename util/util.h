@@ -194,7 +194,6 @@ int strcasecmpnew(const char *s1, const char *s2)
 // ************************ LINES SHORTCUT: OTHERS
 #define len(STR)                strlen(STR)
 #define new_struct(TYPE, NAME)  TYPE *NAME = (TYPE *)malloc(sizeof(TYPE))
-#define memalloc(TYPE) (TYPE *)malloc(sizeof(TYPE))
 #define break_if_numeric(STR)   int len = strlen(STR); for( range(len) ) if( !isdigit(STR[i])) continue; break;
 #define loop(DOWHAT)            while(true){DOWHAT}
 #define CONST_STRING_ARRAY(NAME,COUNTNAME, NUM, ...)        const int COUNTNAME = NUM; const char *const NAME[] = {__VA_ARGS__};
